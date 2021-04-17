@@ -18,7 +18,7 @@ fetch_device_data <- function(mac_address, date = NULL) {
     url <- paste0("https://api.ambientweather.net/v1/devices/", mac_address,
                   "?apiKey=", get_or_set_api_key(),
                   "&applicationKey=", get_or_set_application_key(),
-                  "&endDate=", format(end_date, "%Y-%m-%dT%X.000Z"))
+                  "&endDate=", as.numeric(as.POSIXct(end_date)), "000")
   }
 
   response <- httr::GET(url = url)
